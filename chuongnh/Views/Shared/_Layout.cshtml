@@ -3,40 +3,94 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - chuongnh</title>
     @Styles.Render("~/Content/css")
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Plugins/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Plugins/css/style.min.css" rel="stylesheet" />
+    <link href="~/Plugins/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="~/Plugins/css/theme/default.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- begin #header -->
+    <div id="header" class="header navbar navbar-default navbar-fixed-top">
+        <!-- begin container -->
         <div class="container">
+            <!-- begin navbar-header -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="/" class="navbar-brand">
+                    <span class="fa fa-home"></span>
+                    <span class="brand-text">
+                        Blog lập trình
+                    </span>
+                </a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <!-- end navbar-header -->
+            <!-- begin navbar-collapse -->
+            <div class="collapse navbar-collapse" id="header-navbar">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
+                    @{Html.RenderAction("_MenuCategoryPartial","Home",null);}
+                    <li>@Html.ActionLink("Giới thiệu", "About", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
+            <!-- end navbar-collapse -->
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <!-- end container -->
     </div>
 
+    <!-- begin #page-title -->
+    <div id="page-title" class="page-title has-bg">
+        <div class="bg-cover"><img src="~/Plugins/img/cover.jpg" alt="" /></div>
+        <div class="container">
+            <h1>Blog lập trình</h1>
+            <p>Nơi chia sẽ kiến thức</p>
+        </div>
+    </div>
+    <!-- end #page-title -->
+    <!-- begin #content -->
+    <div id="content" class="content">
+        <!-- begin container -->
+        <div class="container">
+            <!-- begin row -->
+            <div class="row row-space-30">
+                <div class="col-md-9">
+                    @RenderBody()
+                </div>
+                <div class="col-md-3">
+                    @{ Html.RenderAction("_RightMenu", "Home", null);}
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end #content -->
+    @{ Html.RenderAction("_Footer", "Home", null);}
+    <!-- begin #footer-copyright -->
+    <div id="footer-copyright" class="footer-copyright">
+        <!-- begin container -->
+        <div class="container">
+            <span class="copyright">Copyright &copy; @DateTime.Now.Year chuongnh</span>
+            <ul class="social-media-list">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+            </ul>
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end #footer-copyright -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

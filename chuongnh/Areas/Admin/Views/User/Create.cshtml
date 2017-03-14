@@ -1,0 +1,57 @@
+﻿@model chuongnh.Areas.Admin.Models.CreateUserViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+div class="row">
+<div class="col-md-12">
+    <div class="panel panel-inverse">
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+            </div>
+            <h4 class="panel-title">@ViewBag.Title</h4>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Create", "User", FormMethod.Post, new { role = "form", id = "frmCreateUser" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Bắt buộc</h4><hr />
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+                        <h4>Tùy chọn</h4><hr />
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FullName, new { @class = "control-label" })
+                            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> Tạo mới</button>
+                        <a href="/quan-tri/nguoi-dung" class="btn btn-outline-danger"><i class="fa fa-backward"></i> Trở về</a>
+                    </div>
+            }
+        </div>
+    </div>
+</div>

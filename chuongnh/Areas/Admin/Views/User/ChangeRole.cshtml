@@ -1,0 +1,92 @@
+﻿@using Microsoft.AspNet.Identity.EntityFramework;
+@model IEnumerable<IdentityRole>
+@{
+    ViewBag.Title = "ChangeRole";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var user = (chuongnh.Models.ApplicationUser)ViewBag.User;
+}
+
+
+@section styles{
+
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="~/Areas/Admin/Assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/css/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+}
+@section scripts{
+
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
+    <script src="~/Areas/Admin/Assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Areas/Admin/Assets/js/table-manage-buttons.demo.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            TableManageButtons.init();
+        });
+    </script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-inverse">
+            <div class="panel-heading">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title">@ViewBag.Title</h4>
+            </div>
+            <div class="panel-body">
+
+                <table id="data-table" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <td>Quyền người dùng</td>
+                            <td>Trạng thái hiện hành</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+            {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>
+                                    @{
+                                        var userRole = user.Roles;
+                                        <form action="/Admin/User/ChangeRole" method="post" class="frmChangeRole" id="@item.Id">
+                                            <input type="hidden" name="Id" value="@user.Id" />
+                                            <input type="hidden" name="RoleId" value="@item.Id" />
+                                            @if (userRole.Any(x => x.RoleId == item.Id))
+                                            {
+                                                <button type="submit" class="btn btn-outline-danger btn-sm" id="btn-change-role-@item.Id">Hủy</button>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" class="btn btn-outline-success btn-sm" id="btn-change-role-@item.Id">Thêm</button>
+                                            }
+                                        </form>
+                                    }
+                                </td>
+                            </tr>
+
+                                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

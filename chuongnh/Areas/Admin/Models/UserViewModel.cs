@@ -38,6 +38,7 @@ namespace chuongnh.Areas.Admin.Models
 
         // option
         [Display(Name = "Họ tên")]
+        [System.Web.Mvc.AllowHtml]
         public string FullName { get; set; }
     }
 

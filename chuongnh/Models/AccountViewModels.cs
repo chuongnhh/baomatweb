@@ -64,6 +64,9 @@ namespace chuongnh.Models
 
     public class RegisterViewModel
     {
+        [System.Web.Mvc.AllowHtml]
+        public string FullName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

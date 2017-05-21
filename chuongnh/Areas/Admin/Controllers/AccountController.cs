@@ -12,7 +12,7 @@ using chuongnh.Models;
 
 namespace chuongnh.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

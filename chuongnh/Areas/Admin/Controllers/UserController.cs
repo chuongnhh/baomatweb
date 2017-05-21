@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace chuongnh.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class UserController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -60,6 +60,7 @@ namespace chuongnh.Areas.Admin.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
+                    FullName=model.FullName
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

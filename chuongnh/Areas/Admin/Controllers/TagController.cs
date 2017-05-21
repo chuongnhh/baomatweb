@@ -7,7 +7,7 @@ using chuongnh.Models;
 
 namespace chuongnh.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class TagController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

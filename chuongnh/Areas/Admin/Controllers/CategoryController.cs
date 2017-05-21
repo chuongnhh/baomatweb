@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace chuongnh.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class CategoryController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

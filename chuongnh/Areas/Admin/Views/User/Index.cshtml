@@ -66,7 +66,7 @@
                         {
                             <tr>
                                 <td>@item.Email</td>
-                                <td>@item.FullName</td>
+                                <td>@Html.Raw(item.FullName)</td>
                                 <td>@item.PhoneNumber</td>
                                 <td>
                                     @foreach (var r in item.Roles)

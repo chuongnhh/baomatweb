@@ -13,6 +13,7 @@ using System.Drawing;
 
 namespace chuongnh.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PostController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace chuongnh.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -59,7 +60,6 @@ namespace chuongnh.Areas.Admin.Controllers
                 {
                     UserName = model.Email,
                     Email = model.Email,
-                    FullName = model.FullName
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -106,7 +106,7 @@ namespace chuongnh.Areas.Admin.Controllers
                     user.Roles.Remove(user.Roles.FirstOrDefault(x => x.RoleId == RoleId));
 
                     await db.SaveChangesAsync();
-                    return RedirectToAction("Index","User",null);//Json(new { status = true, value = false, message = "Đã hủy quyền thành công." });
+                    return RedirectToAction("Index", "User", null);//Json(new { status = true, value = false, message = "Đã hủy quyền thành công." });
                 }
                 else
                 {

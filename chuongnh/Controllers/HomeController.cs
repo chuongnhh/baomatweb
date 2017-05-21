@@ -20,6 +20,12 @@ namespace chuongnh.Controllers
             return View(model);
         }
 
+        [Authorize]
+        public ActionResult LoginSuccess()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             return View();

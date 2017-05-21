@@ -108,6 +108,12 @@ namespace chuongnh.Models
     [Table("AspNetComments")]
     public class ApplicationComment
     {
+        public ApplicationComment()
+        {
+            CreatedDate = DateTime.Now;
+            UpdatedDate = DateTime.Now;
+            Id= GuidComb.GenerateComb();
+        }
         [Key]
         public Guid Id { get; set; }
         public string CommentContent { get; set; }
@@ -138,8 +144,6 @@ namespace chuongnh.Models
             Comments = new List<ApplicationComment>();
 
         }
-        [Display(Name ="Tên người dùng")]
-        public string FullName { get; set; }
 
         public virtual ICollection<ApplicationCategory> Categories { get; set; }
         public virtual ICollection<ApplicationPost> Posts { get; set; }
@@ -165,6 +169,7 @@ namespace chuongnh.Models
         public virtual DbSet<ApplicationCategory> Categories { get; set; }
         public virtual DbSet<ApplicationPost> Posts { get; set; }
         public virtual DbSet<ApplictionTag> Tags { get; set; }
+        public virtual DbSet<ApplicationComment> Comments { get; set; }
 
         public static ApplicationDbContext Create()
         {
